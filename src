@@ -1,0 +1,21 @@
+body{
+  background-color:teal;
+  height:100%;
+}
+
+.box{
+  background-color:blue;
+  width:300px;
+  height:300px;
+  border-radius: 60px;
+}
+
+.box p{
+    color:yellow;
+  }
+
+img{
+  width:300px;
+  height:auto;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy9zYXNzL3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHNCQUFzQjtFQUN0QixZQUFZO0NBQ2I7O0FBRUQ7RUFDRSxzQkFBc0I7RUFDdEIsWUFBWTtFQUNaLGFBQWE7RUFDYixvQkFBb0I7Q0FJckI7O0FBSEM7SUFDRSxhQUFhO0dBQ2Q7O0FBR0g7RUFDRSxZQUFZO0VBQ1osWUFBWTtDQUNiIiwiZmlsZSI6InNyYyIsInNvdXJjZXNDb250ZW50IjpbImJvZHl7XG4gIGJhY2tncm91bmQtY29sb3I6dGVhbDtcbiAgaGVpZ2h0OjEwMCU7XG59XG5cbi5ib3h7XG4gIGJhY2tncm91bmQtY29sb3I6Ymx1ZTtcbiAgd2lkdGg6MzAwcHg7XG4gIGhlaWdodDozMDBweDtcbiAgYm9yZGVyLXJhZGl1czogNjBweDtcbiAgcHtcbiAgICBjb2xvcjp5ZWxsb3c7XG4gIH1cbn1cblxuaW1ne1xuICB3aWR0aDozMDBweDtcbiAgaGVpZ2h0OmF1dG87XG59Il19 */

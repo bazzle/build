@@ -1,0 +1,23 @@
+# Don't track content of these folders
+node_modules/
+dest/
+# Don't track any of these files
+.package-lock.json
+
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.psd
+*.sketch
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.map

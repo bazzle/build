@@ -1,69 +1,85 @@
 module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
-  
-    grunt.initConfig({
-      postcss: {
+
+  grunt.initConfig({
+    postcss: {
+      dev: {
         options: {
           map: true, // inline sourcemaps
-  
           processors: [
-            require('pixrem')(), // add fallbacks for rem units 
-            require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes 
-            require('cssnano')() // minify the result 
+            require("precss")(), // deal with SASS gubbins
+            require("autoprefixer")({ browsers: "last 2 versions" }) // add vendor prefixes
           ]
         },
-        dist: {
-          src: 'css/main.css'
-        }
+        src: "css/input/style.css",
+        dest: "css/style.css"
       },
-      sass: {
-        dist: {
-          files: {
-            'css/main.css': 'sass/main.scss'
-          }
-        }
-      },
-      svgmin: {
+      prod: {
         options: {
-          plugins: [
-            {
-              removeViewBox: true
-            },
-            {
-              removeUselessStrokeAndFill: true
-            },
-            {
-              cleanupIDs:false
-            },
+          processors: [
+            require("pixrem")(), // add fallbacks for rem units
+            require("autoprefixer")({ browsers: "last 2 versions" }), // add vendor prefixes
+            require("cssnano")(), // minify the result
+            require("precss")() // deal with SASS gubbins
           ]
         },
-        dist: {
-          files: {
-            'assets/svg/icons.svg': 'assets/svg/input/*.svg'
+        src: "css/input/style.css",
+        dest: "dest/css/style.css"
+      }
+    },
+    uglify: {
+      files: {
+        src: "js/scripts.js",
+        dest: "dest/js/scripts.js"
+      }
+    },
+    htmlmin: {
+      options: {
+        removeComments: true,
+        collapseWhitespace: true
+      },
+      files: {
+        src: "index.html",
+        dest: "dest/index.html"
+      }
+    },
+    imagemin: {
+      dynamic: {
+        files: [
+          {
+            expand: true,
+            cwd: "assets/images/",
+            src: ["**/*.{png,jpg,gif}"],
+            dest: "dest/assets/images/"
           }
-        }
+        ]
+      }
+    },
+    browserSync: {
+      bsFiles: {
+        src: ["css/style.css", "index.html"]
       },
-      watch: {
-        sass: {
-          files: ['sass/*.scss'],
-          tasks: ['sass'],
-         }
-      },
-      browserSync: {
-        bsFiles: {
-          src: ["_site/css/main.css", "_site/*.html"]
-        },
-        options: {
-          watchTask: true,
-          proxy: "http://localhost:4000"
-        }
-      },
-    });
+      options: {
+        watchTask: true,
+        proxy: "build:8888"
+      }
+    },
+    watch: {
+      css: {
+        files: ["css/input/*.css"],
+        tasks: ["postcss:dev"]
+      }
+    }
+  });
+
+  grunt.registerTask("dev", ["browserSync", "watch"]);
+  grunt.registerTask("build", [
+    "uglify",
+    "htmlmin",
+    "imagemin",
+    "postcss:prod"
+  ]);
 
 
-    grunt.registerTask("dev", ["browserSync", "watch"]);
-    grunt.registerTask('svg', ['svgmin']);
-  
-
-  };
+};

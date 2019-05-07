@@ -2,10 +2,10 @@
 node_modules/
 dest/
 css/input/
-css/style.css
 # Don't track any of these files
 .package-lock.json
 
+*.css
 *.com
 *.class
 *.dll

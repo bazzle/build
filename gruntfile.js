@@ -7,10 +7,10 @@ module.exports = function(grunt) {
       dev: {
         options: {
           map: true, // inline sourcemaps
+          parser: require('postcss-scss'),
           processors: [
             require("precss")(), // deal with SASS gubbins
-            require('@csstools/postcss-sass')(/* node-sass options */),
-            require("autoprefixer")({ browsers: "last 2 versions" }) // add vendor prefixes
+            require("autoprefixer")({ browsers: "last 2 versions" }), // add vendor prefixes
           ]
         },
         src: "css/input/style.css",
@@ -18,6 +18,7 @@ module.exports = function(grunt) {
       },
       prod: {
         options: {
+          parser: require('postcss-scss'),
           processors: [
             require("pixrem")(), // add fallbacks for rem units
             require("autoprefixer")({ browsers: "last 2 versions" }), // add vendor prefixes

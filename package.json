@@ -9,7 +9,8 @@
   "author": "Barry Richards",
   "license": "ISC",
   "dependencies": {
-    "autoprefixer": "^9.5.0",
+    "@csstools/postcss-sass": "^4.0.0",
+    "autoprefixer": "^9.5.1",
     "cssnano": "^4.1.10",
     "grunt": "^1.0.4",
     "grunt-contrib-uglify-es": "github:gruntjs/grunt-contrib-uglify#harmony",
@@ -17,11 +18,12 @@
     "pixrem": "^5.0.0"
   },
   "devDependencies": {
-    "@csstools/postcss-sass": "^4.0.0",
     "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-htmlmin": "^3.0.0",
     "grunt-contrib-imagemin": "^3.1.0",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-postcss": "^0.9.0"
+    "grunt-postcss": "^0.9.0",
+    "postcss-inline-comment": "^3.0.0",
+    "precss": "^4.0.0"
   }
 }

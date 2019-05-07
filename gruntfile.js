@@ -9,6 +9,7 @@ module.exports = function(grunt) {
           map: true, // inline sourcemaps
           processors: [
             require("precss")(), // deal with SASS gubbins
+            require('@csstools/postcss-sass')(/* node-sass options */),
             require("autoprefixer")({ browsers: "last 2 versions" }) // add vendor prefixes
           ]
         },

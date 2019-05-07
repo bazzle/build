@@ -9,11 +9,12 @@ module.exports = function(grunt) {
           map: true, // inline sourcemaps
           parser: require('postcss-scss'),
           processors: [
+            require('postcss-easy-import'),
+            require('postcss-advanced-variables')(),
             require("precss")(), // deal with SASS gubbins
-            require("autoprefixer")({ browsers: "last 2 versions" }), // add vendor prefixes
           ]
         },
-        src: "css/input/style.css",
+        src: "css/input/main.css",
         dest: "css/style.css"
       },
       prod: {

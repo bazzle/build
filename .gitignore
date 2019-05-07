@@ -1,6 +1,7 @@
 # Don't track content of these folders
 node_modules/
 dest/
+css/input/
 # Don't track any of these files
 .package-lock.json
 *.css

@@ -4,7 +4,6 @@ dest/
 css/input/
 # Don't track any of these files
 .package-lock.json
-
 *.css
 *.com
 *.class

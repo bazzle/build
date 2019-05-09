@@ -13,7 +13,6 @@
     "cssnano": "^4.1.10",
     "grunt": "^1.0.4",
     "grunt-contrib-uglify-es": "github:gruntjs/grunt-contrib-uglify#harmony",
-    "load-grunt-tasks": "^4.0.0",
     "pixrem": "^5.0.0",
     "postcss-scss": "^2.0.0"
   },
@@ -24,6 +23,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-postcss": "^0.9.0",
+    "jit-grunt": "^0.10.0",
     "postcss-inline-comment": "^3.0.0"
   }
 }

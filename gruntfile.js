@@ -3,20 +3,16 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
-    postcss: {
-      dev: {
-        options: {
-          map: true, // inline sourcemaps
-          parser: require('postcss-scss'),
-          processors: [
-            require('postcss-easy-import'),
-            require('postcss-advanced-variables')(),
-            require("precss")(), // deal with SASS gubbins
-          ]
-        },
-        src: "css/input/main.css",
-        dest: "css/style.css"
+    sass: {
+      options: {
+        style: 'expanded'
       },
+      files: {
+        src: "css/input/main.scss",
+        dest: "css/style.css"
+      }
+    },
+    postcss: {
       prod: {
         options: {
           parser: require('postcss-scss'),
@@ -24,10 +20,9 @@ module.exports = function(grunt) {
             require("pixrem")(), // add fallbacks for rem units
             require("autoprefixer")({ browsers: "last 2 versions" }), // add vendor prefixes
             require("cssnano")(), // minify the result
-            require("precss")() // deal with SASS gubbins
           ]
         },
-        src: "css/input/style.css",
+        src: "css/style.css",
         dest: "dest/css/style.css"
       }
     },
@@ -70,8 +65,8 @@ module.exports = function(grunt) {
     },
     watch: {
       css: {
-        files: ["css/input/*.css"],
-        tasks: ["postcss:dev"]
+        files: ["css/input/*.scss"],
+        tasks: ["sass"]
       }
     }
   });

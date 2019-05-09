@@ -4,6 +4,8 @@ dest/
 css/input/*
 !css/input/.gitkeep 
 # Don't track any of these files
+.scss
+.sass-cache
 .package-lock.json
 *.css
 *.com

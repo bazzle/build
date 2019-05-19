@@ -13,8 +13,7 @@
     "cssnano": "^4.1.10",
     "grunt": "^1.0.4",
     "grunt-contrib-uglify-es": "github:gruntjs/grunt-contrib-uglify#harmony",
-    "pixrem": "^5.0.0",
-    "postcss-scss": "^2.0.0"
+    "pixrem": "^5.0.0"
   },
   "devDependencies": {
     "grunt-browser-sync": "^2.2.0",

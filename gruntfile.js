@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  
+
   require('jit-grunt')(grunt);
 
   grunt.initConfig({
@@ -15,7 +15,6 @@ module.exports = function(grunt) {
     postcss: {
       prod: {
         options: {
-          parser: require('postcss-scss'),
           processors: [
             require("pixrem")(), // add fallbacks for rem units
             require("autoprefixer")({ browsers: "last 2 versions" }), // add vendor prefixes
@@ -26,20 +25,38 @@ module.exports = function(grunt) {
         dest: "dest/css/style.css"
       }
     },
+    svgstore: {
+      options: {
+        prefix : 'icon-',
+        includedemo: true
+      },
+      default: {
+        files: {
+          'assets/svg/icons.svg': ['assets/svg/input/*.svg'],
+        }
+      },
+    },
+    /* deprecated need to find a replacement for this that compiles es6
     uglify: {
       files: {
-        src: "js/scripts.js",
+        src: "js/main.js",
         dest: "dest/js/scripts.js"
       }
     },
+    */
     htmlmin: {
-      options: {
-        removeComments: true,
-        collapseWhitespace: true
-      },
-      files: {
-        src: "index.html",
-        dest: "dest/index.html"
+      default: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: [
+          {
+            expand: true,
+            src: '*.html',
+            dest: 'dest/'
+          }
+        ]
       }
     },
     imagemin: {
@@ -56,11 +73,12 @@ module.exports = function(grunt) {
     },
     browserSync: {
       bsFiles: {
-        src: ["css/style.css", "*.html"]
+        src: ["css/style.css", "*.html", "js/*.js"]
       },
       options: {
         watchTask: true,
-        proxy: "build:8888"
+        proxy: "baf-design:8888",
+        notify: false
       }
     },
     watch: {
@@ -73,7 +91,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask("dev", ["browserSync", "watch"]);
   grunt.registerTask("build", [
-    "uglify",
     "htmlmin",
     "imagemin",
     "postcss:prod"

@@ -2,6 +2,7 @@
 node_modules/
 dest/
 css/input/*
+.sass-cache/
 !css/input/.gitkeep 
 # Don't track any of these files
 .scss

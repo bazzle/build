@@ -4,8 +4,8 @@
   "description": "Starting point for website builds",
   "main": "index.js",
   "repository": {
-    "type" : "git",
-    "url" : "git@github.com:bazzle/build.git"
+    "type": "git",
+    "url": "git@github.com:bazzle/build.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,7 +29,6 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-postcss": "^0.9.0",
     "grunt-svgstore": "^2.0.0",
-    "jit-grunt": "^0.10.0",
-    "postcss-inline-comment": "^3.0.0"
+    "jit-grunt": "^0.10.0"
   }
 }

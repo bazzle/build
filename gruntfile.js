@@ -1,15 +1,14 @@
 module.exports = function(grunt) {
-
-  require('jit-grunt')(grunt);
+  require("jit-grunt")(grunt);
 
   grunt.initConfig({
     sass: {
       options: {
-        style: 'expanded'
+        style: "expanded"
       },
       files: {
-        src: "css/input/main.scss",
-        dest: "css/style.css"
+        src: "assets/css/input/main.scss",
+        dest: "assets/css/style.css"
       }
     },
     postcss: {
@@ -17,33 +16,41 @@ module.exports = function(grunt) {
         options: {
           processors: [
             require("pixrem")(), // add fallbacks for rem units
-            require("autoprefixer")({ browsers: "last 2 versions" }), // add vendor prefixes
-            require("cssnano")(), // minify the result
+            require("autoprefixer")(),
+            require("cssnano")() // minify the result
           ]
         },
-        src: "css/style.css",
-        dest: "dest/css/style.css"
+        src: "assets/css/style.css",
+        dest: "dist/assets/css/style.css"
       }
     },
     svgstore: {
       options: {
-        prefix : 'icon-',
+        prefix: "icon-",
         includedemo: true
       },
-      default: {
+      dev: {
         files: {
-          'assets/svg/icons.svg': ['assets/svg/input/*.svg'],
+          "assets/icons/icons.svg": ["assets/icons/input/*.svg"]
         }
       },
-    },
-    /* deprecated need to find a replacement for this that compiles es6
-    uglify: {
-      files: {
-        src: "js/main.js",
-        dest: "dest/js/scripts.js"
+      prod: {
+        files: {
+          "dist/assets/icons/icons.svg": ["assets/icons/input/*.svg"]
+        }
       }
     },
-    */
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ["@babel/preset-env"]
+      },
+      dist: {
+        files: {
+          "dist/assets/js/scripts.js": "assets/js/scripts.js"
+        }
+      }
+    },
     htmlmin: {
       default: {
         options: {
@@ -53,48 +60,47 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            src: '*.html',
-            dest: 'dest/'
+            src: "*.html",
+            dest: "dist/"
           }
         ]
       }
     },
     imagemin: {
-      dynamic: {
+      default: {
         files: [
           {
             expand: true,
-            cwd: "assets/images/",
+            cwd: 'assets/images/',
             src: ["**/*.{png,jpg,gif}"],
-            dest: "dest/assets/images/"
+            dest: "dist/assets/images/"
           }
         ]
       }
     },
     browserSync: {
       bsFiles: {
-        src: ["css/style.css", "*.html", "js/*.js"]
+        src: ["assets/css/style.css", "*.html", "js/*.js"]
       },
       options: {
         watchTask: true,
-        proxy: "baf-design:8888",
-        notify: false
+        server: {
+          baseDir: "./"
+        }
       }
     },
     watch: {
       css: {
-        files: ["css/input/*.scss"],
+        files: ["assets/css/input/*.scss"],
         tasks: ["sass"]
+      },
+      svg: {
+        files: ["assets/icons/input/*.svg"],
+        tasks: ["svgstore:dev"]
       }
     }
   });
 
   grunt.registerTask("dev", ["browserSync", "watch"]);
-  grunt.registerTask("build", [
-    "htmlmin",
-    "imagemin",
-    "postcss:prod"
-  ]);
-
-
+  grunt.registerTask("build", ["imagemin", "htmlmin", "svgstore:prod", "postcss", "babel"]);
 };
